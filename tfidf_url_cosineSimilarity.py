@@ -6,6 +6,7 @@ import pprint
 from numpy import dot
 from numpy.linalg import norm
 from urllib import urlopen
+from bs4 import BeautifulSoup
 
 doc_list = []
 
@@ -14,13 +15,15 @@ proxies = {'here goes your proxy :3128'}
 
 url1 = "http://news.bbc.co.uk/2/hi/health/2284783.stm"
 raw1 = urlopen(url1, proxies=proxies).read()
-text1 = nltk.clean_html(raw1)
-tokens1 = nltk.word_tokenize(text1)
+#text1 = nltk.clean_html(raw1) #deprecated
+soup1 = BeautifulSoup(raw1).get_text()
+tokens1 = nltk.word_tokenize(soup1)
 
 url2 = "http://news.bbc.co.uk/2/hi/health/2284783.stm"
-raw2 = urlopen(url1, proxies=proxies).read()
-text2 = nltk.clean_html(raw2)
-tokens2 = nltk.word_tokenize(text2)
+raw2 = urlopen(url2, proxies=proxies).read()
+#text2 = nltk.clean_html(raw2) #deprecated
+soup2 = BeautifulSoup(raw2).get_text()
+tokens2 = nltk.word_tokenize(soup2)
 
 def tf(word,doc):
     all_num = 0
